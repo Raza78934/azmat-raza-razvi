@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azmat Raza Razvi | Official Personal Website</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            950: '#022c22',
+                            900: '#064e3b',
+                            800: '#065f46',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #022c22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 4px;
+        }
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(2, 44, 34, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(217, 119, 6, 0.15);
+        }
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.1);
+        }
+        /* Subtle Gold Glow */
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(217, 119, 6, 0.15);
+        }
+        .gold-text-glow {
+            text-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+        }
+        /* Islamic Geometric Pattern Overlay Placeholder (CSS pure gradient styling) */
+        .islamic-bg {
+            background-color: #000000;
+            background-image: radial-gradient(rgba(6, 95, 70, 0.2) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-black text-white islamic-bg overflow-x-hidden">
+
+    <!-- 1. Preloader Screen -->
+    <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black transition-opacity duration-700">
+        <div class="relative flex flex-col items-center animate-pulse">
+            <!-- Place your gold crown logo path here -->
+            <img src="assets/crown-logo.png" alt="👑" class="w-24 h-24 mb-4 object-contain filter drop-shadow-[0_0_15px_rgba(217,119,6,0.6)]">
+            <h2 class="font-serif text-2xl text-gold-400 tracking-widest">AZMAT RAZA RAZVI</h2>
+            <div class="w-32 h-[2px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mt-2"></div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-gold-600 via-gold-400 to-emerald-600 z-50 transition-all duration-100" style="width: 0%"></div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-6 right-6 z-40 bg-emerald-900/80 border border-gold-500/40 text-gold-400 w-12 h-12 rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-gold-500 hover:text-black">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- 2. Navigation Bar -->
+    <nav class="fixed top-0 w-full z-40 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#home" class="flex items-center gap-3">
+                <img src="assets/crown-logo.png" alt="👑" class="w-10 h-10 object-contain filter drop-shadow-[0_0_5px_rgba(217,119,6,0.5)]">
+                <span class="font-serif text-lg tracking-wider text-gold-400 hidden sm:block">AZMAT RAZA RAZVI</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+                <a href="#home" class="hover:text-gold-400 transition-colors">Home</a>
+                <a href="#about" class="hover:text-gold-400 transition-colors">About</a>
+                <a href="#gallery" class="hover:text-gold-400 transition-colors">Gallery</a>
+                <a href="#islamic-inspirations" class="hover:text-gold-400 transition-colors">Islamic Inspirations</a>
+                <a href="#contact" class="hover:text-gold-400 transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menu-btn" class="md:hidden text-gold-400 text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropout Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-black/95 border-b border-gold-500/20 py-6 flex flex-col items-center gap-5 text-lg font-medium">
+            <a href="#home" class="mobile-link hover:text-gold-400">Home</a>
+            <a href="#about" class="mobile-link hover:text-gold-400">About</a>
+            <a href="#gallery" class="mobile-link hover:text-gold-400">Gallery</a>
+            <a href="#islamic-inspirations" class="mobile-link hover:text-gold-400">Islamic Inspirations</a>
+            <a href="#contact" class="mobile-link hover:text-gold-400">Contact</a>
+        </div>
+    </nav>
+
+    <!-- 3. Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden bg-gradient-to-b from-black via-emerald-950/20 to-black">
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+            <!-- Overlay visual elements or gradients -->
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-800/20 rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-600/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-3xl mx-auto flex flex-col items-center">
+            <div class="mb-6 animate-bounce duration-1000">
+                <img src="assets/crown-logo.png" alt="👑" class="w-28 h-28 object-contain filter drop-shadow-[0_0_20px_rgba(217,119,6,0.6)]">
+            </div>
+            <h1 class="font-serif text-5xl md:text-7xl font-bold tracking-wide text-white mb-2 gold-text-glow">
+                Azmat Raza Razvi
+            </h1>
+            <p class="text-gold-400 font-medium tracking-[0.3em] uppercase text-sm md:text-base mb-8">
+                Faith • Creativity • Identity
+            </p>
+            
+            <div class="w-16 h-[1px] bg-gold-400 mb-8"></div>
+            
+            <p class="text-xl font-serif text-emerald-400 italic mb-4">Assalamu Alaikum.</p>
+            <p class="text-gray-300 md:text-lg max-w-2xl leading-relaxed mb-10">
+                Welcome to my official personal website. This platform reflects my personality, creativity, appreciation for Islamic art, Urdu calligraphy, and meaningful digital design.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="#gallery" class="px-8 py-3 bg-gradient-to-r from-gold-600 to-gold-500 text-black font-semibold rounded-none tracking-wider hover:from-gold-500 hover:to-gold-400 shadow-lg gold-glow transition-all duration-300">
+                    EXPLORE GALLERY
+                </a>
+                <a href="#contact" class="px-8 py-3 border border-emerald-600 text-white font-semibold rounded-none tracking-wider bg-emerald-950/40 hover:bg-emerald-900/60 hover:border-gold-400 transition-all duration-300">
+                    CONNECT WITH ME
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. About Section -->
+    <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-gold-400 mb-2">About Me</h2>
+            <div class="h-[1px] w-24 bg-gold-500 mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Content Left Block -->
+            <div class="lg:col-span-7 glass-panel p-8 md:p-12 gold-glow">
+                <p class="text-xl font-serif text-gold-400 italic mb-4">Assalamu Alaikum.</p>
+                <h3 class="text-2xl font-bold mb-6">My name is <span class="text-emerald-400">Azmat Raza Razvi</span>.</h3>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                    Welcome to my official personal website. This digital space reflects my identity, my creativity, and my deep appreciation for Islamic art, Urdu calligraphy, and digital aesthetics.
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                    Here, I am pleased to share my ongoing inspirations, curated artwork, and connect authentically with people from around the world through my official creative channels.
+                </p>
+            </div>
+
+            <!-- Interests Cards Right Block -->
+            <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="glass-panel p-6 flex flex-col items-center text-center group hover:border-gold-500/50 transition-all duration-300">
+                    <div class="text-gold-400 text-3xl mb-3"><i class="fas fa-mosque"></i></div>
+                    <h4 class="font-serif font-semibold text-lg text-white">Islamic Art</h4>
+                </div>
+                <div class="glass-panel p-6 flex flex-col items-center text-center group hover:border-gold-500/50 transition-all duration-300">
+                    <div class="text-gold-400 text-3xl mb-3"><i class="fas fa-pen-nib"></i></div>
+                    <h4 class="font-serif font-semibold text-lg text-white">Urdu Calligraphy</h4>
+                </div>
+                <div class="glass-panel p-6 flex flex-col items-center text-center group hover:border-gold-500/50 transition-all duration-300">
+                    <div class="text-gold-400 text-3xl mb-3"><i class="fas fa-palette"></i></div>
+                    <h4 class="font-serif font-semibold text-lg text-white">Creative Design</h4>
+                </div>
+                <div class="glass-panel p-6 flex flex-col items-center text-center group hover:border-gold-500/50 transition-all duration-300">
+                    <div class="text-gold-400 text-3xl mb-3"><i class="fas fa-laptop-code"></i></div>
+                    <h4 class="font-serif font-semibold text-lg text-white">Web Design</h4>
+                </div>
+                <div class="glass-panel p-6 sm:col-span-2 flex flex-col items-center text-center group hover:border-gold-500/50 transition-all duration-300">
+                    <div class="text-gold-400 text-3xl mb-3"><i class="fas fa-photo-film"></i></div>
+                    <h4 class="font-serif font-semibold text-lg text-white">Digital Creativity & Content</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Gallery Section -->
+    <section id="gallery" class="py-24 bg-zinc-950/60 border-y border-emerald-950/40 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-4xl font-bold text-gold-400 mb-2">The Gallery</h2>
+                <div class="h-[1px] w-24 bg-gold-500 mx-auto mb-6"></div>
+                <p class="text-gray-400 text-sm tracking-widest max-w-md mx-auto">Explore my creative world across identity, art, calligraphy, and visuals.</p>
+            </div>
+
+            <!-- Categories Tabs -->
+            <div class="flex flex-wrap justify-center gap-3 mb-12">
+                <button class="px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-gold-500 bg-gold-500 text-black">All Works</button>
+                <button class="px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-gold-500/30 text-gray-300 hover:border-gold-500 transition-colors">👑 Brand Identity</button>
+                <button class="px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-gold-500/30 text-gray-300 hover:border-gold-500 transition-colors">🕌 Islamic Artwork</button>
+                <button class="px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-gold-500/30 text-gray-300 hover:border-gold-500 transition-colors">✍️ Calligraphy</button>
+                <button class="px-5 py-2 text-xs uppercase tracking-wider font-semibold border border-gold-500/30 text-gray-300 hover:border-gold-500 transition-colors">🌙 Inspirations</button>
+            </div>
+
+            <!-- Gallery Grid (Replace src with your uploaded image URLs) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Gallery Item Placeholder 1 -->
+                <div class="relative overflow-hidden group aspect-square glass-panel p-2 cursor-pointer" onclick="openLightbox('assets/islamic-art.jpg')">
+                    <img src="assets/islamic-art.jpg" alt="Islamic Artwork" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-xs uppercase tracking-wider text-gold-400">🕌 Islamic Artwork</span>
+                    </div>
+                </div>
+                <!-- Gallery Item Placeholder 2 -->
+                <div class="relative overflow-hidden group aspect-square glass-panel p-2 cursor-pointer" onclick="openLightbox('assets/calligraphy.jpg')">
+                    <img src="assets/calligraphy.jpg" alt="Calligraphy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-xs uppercase tracking-wider text-gold-400">✍️ Calligraphy</span>
+                    </div>
+                </div>
+                <!-- Gallery Item Placeholder 3 -->
+                <div class="relative overflow-hidden group aspect-square glass-panel p-2 cursor-pointer" onclick="openLightbox('assets/inspirations.jpg')">
+                    <img src="assets/inspirations.jpg" alt="Inspirations" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-xs uppercase tracking-wider text-gold-400">🌙 Inspirations</span>
+                    </div>
+                </div>
+                <!-- Gallery Item Placeholder 4 -->
+                <div class="relative overflow-hidden group aspect-square glass-panel p-2 cursor-pointer" onclick="openLightbox('assets/crown-logo.png')">
+                    <img src="assets/crown-logo.png" alt="Brand Logo" class="w-full h-full object-contain p-4 bg-emerald-950/20 grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-105" loading="lazy">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <span class="text-xs uppercase tracking-wider text-gold-400">👑 Brand Identity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Islamic Inspirations -->
+    <section id="islamic-inspirations" class="py-24 px-6 max-w-7xl mx-auto relative">
+        <div class="text-center mb-16">
+            <h2 class="font-serif text-4xl font-bold text-gold-400 mb-2">Islamic Inspirations</h2>
+            <div class="flex items-center justify-center gap-4 my-4">
+                <div class="h-[1px] w-16 bg-gradient-to-r from-transparent to-gold-500"></div>
+                <div class="text-gold-400 text-sm">✦ 🕌 ✦</div>
+                <div class="h-[1px] w-16 bg-gradient-to-l from-transparent to-gold-500"></div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-panel overflow-hidden relative group gold-glow">
+                <div class="h-80 w-full bg-emerald-950/30 flex items-center justify-center">
+                    <!-- Replace with actual uploaded image for Islamic visuals -->
+                    <img src="assets/islamic-art.jpg" alt="Islamic Visual Architecture" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500">
+                </div>
+                <div class="p-6 bg-black/80 border-t border-gold-500/20">
+                    <h3 class="font-serif text-xl text-gold-400 mb-2">Sacred Geometry & Design</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        An aesthetic exploration into geometric precision, mirroring balance, infinity, and divine artistic focus.
+                    </p>
+                </div>
+            </div>
+
+            <div class="glass-panel overflow-hidden relative group gold-glow">
+                <div class="h-80 w-full bg-emerald-950/30 flex items-center justify-center">
+                    <!-- Replace with actual uploaded image for Calligraphy/Inspiration -->
+                    <img src="assets/calligraphy.jpg" alt="Urdu Text Art" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500">
+                </div>
+                <div class="p-6 bg-black/80 border-t border-gold-500/20">
+                    <h3 class="font-serif text-xl text-gold-400 mb-2">Classical Expression</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Preserving the pristine rhythm and elegance of traditional scripts through contemporary digital design paradigms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Social Media Cards Section -->
+    <section id="social-media" class="py-24 bg-gradient-to-b from-black via-emerald-950/20 to-black px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl font-bold text-gold-400 mb-2">Official Connections</h2>
+                <div class="h-[1px] w-24 bg-gold-500 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Instagram Card -->
+                <a href="https://www.instagram.com/mureed_e_huzoor_qaid_e_millat?igsh=NjMxbnV6MDhzdTc0" target="_blank" rel="noopener noreferrer" 
+                   class="glass-panel p-8 flex flex-col items-center text-center group transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-pink-500/50">
+                    <div class="text-4xl text-gray-400 group-hover:text-pink-500 transition-colors mb-4"><i class="fab fa-instagram"></i></div>
+                    <span class="font-medium tracking-wide block mb-1">Instagram</span>
+                    <span class="text-xs text-gray-500">@mureed_e_huzoor_qaid_e_millat</span>
+                </a>
+
+                <!-- YouTube Card -->
+                <a href="https://www.youtube.com/@AzmatRazaRazvi" target="_blank" rel="noopener noreferrer" 
+                   class="glass-panel p-8 flex flex-col items-center text-center group transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-red-500/50">
+                    <div class="text-4xl text-gray-400 group-hover:text-red-500 transition-colors mb-4"><i class="fab fa-youtube"></i></div>
+                    <span class="font-medium tracking-wide block mb-1">YouTube</span>
+                    <span class="text-xs text-gray-500">@AzmatRazaRazvi</span>
+                </a>
+
+                <!-- X (Twitter) Card -->
+                <a href="https://x.com/azmatra99789944" target="_blank" rel="noopener noreferrer" 
+                   class="glass-panel p-8 flex flex-col items-center text-center group transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-white/50">
+                    <div class="text-4xl text-gray-400 group-hover:text-white transition-colors mb-4"><i class="fab fa-x-twitter"></i></div>
+                    <span class="font-medium tracking-wide block mb-1">X (Twitter)</span>
+                    <span class="text-xs text-gray-500">@azmatra99789944</span>
+                </a>
+
+                <!-- Facebook Card -->
+                <a href="https://www.facebook.com/azmatrazashehzada" target="_blank" rel="noopener noreferrer" 
+                   class="glass-panel p-8 flex flex-col items-center text-center group transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-blue-600/50">
+                    <div class="text-4xl text-gray-400 group-hover:text-blue-600 transition-colors mb-4"><i class="fab fa-facebook-f"></i></div>
+                    <span class="font-medium tracking-wide block mb-1">Facebook</span>
+                    <span class="text-xs text-gray-500">azmatrazashehzada</span>
+                </a>
+
+                <!-- WhatsApp Card -->
+                <a href="https://wa.me/916299592644" target="_blank" rel="noopener noreferrer" 
+                   class="glass-panel p-8 flex flex-col items-center text-center group transition-all duration-300 hover:transform hover:-translate-y-2 hover:border-green-500/50 sm:col-span-2 lg:col-span-1">
+                    <div class="text-4xl text-gray-400 group-hover:text-green-500 transition-colors mb-4"><i class="fab fa-whatsapp"></i></div>
+                    <span class="font-medium tracking-wide block mb-1">WhatsApp</span>
+                    <span class="text-xs text-gray-500">+91 6299592644</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Contact Section -->
+    <section id="contact" class="py-24 px-6 max-w-4xl mx-auto text-center">
+        <div class="glass-panel p-10 md:p-16 gold-glow relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-10">
+                <img src="assets/crown-logo.png" alt="" class="w-40 h-40 object-contain">
+            </div>
+            
+            <h2 class="font-serif text-4xl font-bold text-gold-400 mb-4">Let's Connect</h2>
+            <p class="text-gray-300 max-w-lg mx-auto mb-10">
+                Feel free to reach out across any of my official accounts for collaborations, inquiries, or artistic discussions.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-6">
+                <a href="https://wa.me/916299592644" target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-emerald-900 border border-emerald-600 text-white rounded-none flex items-center gap-3 hover:bg-emerald-800 hover:border-gold-400 transition-all">
+                    <i class="fab fa-whatsapp text-lg"></i> Message on WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Footer -->
+    <footer class="bg-black border-t border-emerald-950/60 py-12 text-center px-6">
+        <div class="max-w-7xl mx-auto flex flex-col items-center">
+            <img src="assets/crown-logo.png" alt="👑" class="w-12 h-12 mb-4 object-contain filter drop-shadow-[0_0_5px_rgba(217,119,6,0.4)]">
+            <h3 class="font-serif text-2xl font-bold tracking-wide text-white mb-1">Azmat Raza Razvi</h3>
+            <p class="text-gold-400 text-xs tracking-[0.2em] uppercase mb-6">Faith • Creativity • Identity</p>
+            
+            <!-- Quick Social Icons Line -->
+            <div class="flex gap-6 mb-8 text-gray-400 text-lg">
+                <a href="https://www.instagram.com/mureed_e_huzoor_qaid_e_millat?igsh=NjMxbnV6MDhzdTc0" target="_blank" class="hover:text-gold-400"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@AzmatRazaRazvi" target="_blank" class="hover:text-gold-400"><i class="fab fa-youtube"></i></a>
+                <a href="https://x.com/azmatra99789944" target="_blank" class="hover:text-gold-400"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/azmatrazashehzada" target="_blank" class="hover:text-gold-400"><i class="fab fa-facebook-f"></i></a>
+            </div>
+
+            <p class="text-xs text-gray-600">&copy; 2026 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Fullscreen Lightbox Preview Component -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 hidden" onclick="closeLightbox()">
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-gold-400">&times;</button>
+        <img id="lightbox-img" src="" alt="Preview" class="max-w-[90%] max-h-[85vh] object-contain border border-gold-500/20">
+    </div>
+
+    <!-- Script Components for UI Logic -->
+    <script>
+        // 1. Loader dismissal
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('opacity-0');
+                setTimeout(() => preloader.style.display = 'none', 700);
+            }, 1000);
+        });
+
+        // 2. Mobile Nav Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // 3. Scroll Progress Indicator & Back to top visibility
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + '%';
+
+            const backToTopBtn = document.getElementById('backToTop');
+            if (winScroll > 400) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+
+        document.getElementById('backToTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 4. Lightbox logic
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.remove('hidden');
+            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+        }
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('opacity-0');
+            setTimeout(() => lightbox.classList.add('hidden'), 300);
+        }
+    </script>
+</body>
+</html>
